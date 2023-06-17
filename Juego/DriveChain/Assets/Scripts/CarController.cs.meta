@@ -3,7 +3,14 @@ guid: 1d6d4242b38089a43bd821979f5e8942
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - frontLeftWheel: {instanceID: 0}
+  - frontRightWheel: {instanceID: 0}
+  - rearLeftWheel: {instanceID: 0}
+  - rearRightWheel: {instanceID: 0}
+  - ppSO: {fileID: 11400000, guid: 562114eabd4bfa642a11c02e72ddb0e1, type: 2}
+  - UpdateLifeEvent: {fileID: 11400000, guid: 1090f94439f01f34eba68fd9d5cc618b, type: 2}
+  - OpenMenuEvent: {fileID: 11400000, guid: 7e04164c73dbca54d9d7b98eab074b6b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

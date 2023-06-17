@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     public WheelCollider rearRightWheel;
     public PlayerProfileSO ppSO;
     public GameEvent UpdateLifeEvent;
+    public GameEvent OpenMenuEvent;
 
     public float motorTorque = 500f; // Torque del motor
     public float maxSteeringAngle = 30f; // Ángulo máximo de giro
@@ -18,8 +19,13 @@ public class CarController : MonoBehaviour
     private void Update()
     {
         LimitRotation();
+        OpenMenu();
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+        if(verticalInput<0 && maxSpeed > 0)
+        {
+            verticalInput = verticalInput * 2;
+        }
         steeringAngle = maxSteeringAngle * horizontalInput;  
         // Control del giro de las ruedas delanteras
         
@@ -87,5 +93,12 @@ public class CarController : MonoBehaviour
             transform.eulerAngles.y,
             clampedRotation
         );
+    }
+    private void OpenMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenMenuEvent.Raise();
+        }
     }
 }

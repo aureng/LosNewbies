@@ -3,7 +3,13 @@ guid: dafe7358a0ffa75418dfc61e5d6a26cb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - speedText: {instanceID: 0}
+  - defText: {instanceID: 0}
+  - attText: {instanceID: 0}
+  - lifeText: {instanceID: 0}
+  - lifeImg: {instanceID: 0}
+  - ppSO: {fileID: 11400000, guid: 562114eabd4bfa642a11c02e72ddb0e1, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
