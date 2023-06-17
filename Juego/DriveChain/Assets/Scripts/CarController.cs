@@ -6,10 +6,8 @@ public class CarController : MonoBehaviour
     public WheelCollider frontRightWheel;
     public WheelCollider rearLeftWheel;
     public WheelCollider rearRightWheel;
-     public int velocidad;
-    public int defensa;
-    public int ataque;
-    public int vida;
+    public PlayerProfileSO ppSO;
+    public GameEvent UpdateLifeEvent;
 
     public float motorTorque = 500f; // Torque del motor
     public float maxSteeringAngle = 30f; // Ángulo máximo de giro
@@ -39,8 +37,8 @@ public class CarController : MonoBehaviour
             Concret concret = collision.gameObject.GetComponent<Concret>();
             if (concret != null)
             {
-                vida -= concret.value;
-                Debug.Log("¡Colisión con Concret! Vida actual: " + vida);
+                ppSO.life -= concret.value;
+                UpdateLifeEvent.Raise();
             }
         }
         else if (collision.gameObject.CompareTag("Cone"))
@@ -48,15 +46,14 @@ public class CarController : MonoBehaviour
             Cone cone = collision.gameObject.GetComponent<Cone>();
             if (cone != null)
             {
-                if (defensa >= cone.value)
+                if (ppSO.def >= cone.value)
                 {
-                    Debug.Log("¡Colisión con Cone! Defensa es mayor o igual a value: " + defensa);
                     Debug.Log("OK");
                 }
                 else
                 {
-                    vida -= cone.value;
-                    Debug.Log("¡Colisión con Cone! Defensa es menor a value. Vida actual: " + vida);
+                    ppSO.life -= cone.value;
+                    UpdateLifeEvent.Raise();
                 }
             }
         }
