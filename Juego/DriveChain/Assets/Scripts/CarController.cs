@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        LimitRotation();
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         steeringAngle = maxSteeringAngle * horizontalInput;  
@@ -26,7 +27,7 @@ public class CarController : MonoBehaviour
         frontRightWheel.steerAngle = steeringAngle;
 
         // Control de la tracción de las ruedas traseras
-        if(maxSpeed<=ppSO.speed){
+        if(maxSpeed<=ppSO.speed*10){
             torque = motorTorque * verticalInput; 
             rearLeftWheel.motorTorque = torque;
             rearRightWheel.motorTorque = torque;
@@ -69,5 +70,22 @@ public class CarController : MonoBehaviour
             }
         }
     }
-    
+    private void LimitRotation()
+    {
+        float currentRotation = transform.eulerAngles.z;
+
+        // Limitar la rotación en el eje Z a un rango de -20 a 20 grados
+        if (currentRotation > 180f)
+        {
+            currentRotation -= 360f;
+        }
+
+        float clampedRotation = Mathf.Clamp(currentRotation, -20f, 20f);
+
+        transform.eulerAngles = new Vector3(
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            clampedRotation
+        );
+    }
 }
