@@ -9,4 +9,6 @@ public class PlayerProfileSO : ScriptableObject
     public int att = 5;
     public int def = 5;
     public int life = 100;
+    public int xperience = 0;
+    public int skillsPoints=3;
 }
