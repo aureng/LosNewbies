@@ -24,5 +24,8 @@ public class CarController : MonoBehaviour
         float torque = motorTorque * verticalInput;
         rearLeftWheel.motorTorque = torque;
         rearRightWheel.motorTorque = torque;
+        // Obtener la velocidad máxima
+        float maxSpeed = Mathf.Max(frontLeftWheel.rpm, frontRightWheel.rpm, rearLeftWheel.rpm, rearRightWheel.rpm) * 2 * Mathf.PI * rearLeftWheel.radius / 60;
+        Debug.Log("Velocidad máxima: " + maxSpeed + " m/s");
     }
 }
